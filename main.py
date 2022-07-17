@@ -8,6 +8,9 @@ from ulauncher.api.shared.action.ExtensionCustomAction import ExtensionCustomAct
 from ulauncher.api.shared.action.DoNothingAction import DoNothingAction
 
 import os
+import gi
+gi.require_version('Wnck', '3.0')
+from gi.repository import Gtk
 
 class ZLikeWindowSwitcherExtension(Extension):
     def __init__(self):
@@ -51,7 +54,17 @@ class KeywordQueryEventListener(EventListener):
                         shell=True,
                         stdout=subprocess.PIPE
                     ).stdout.read().decode()
-                    icon_path = 'images/icon.png'
+
+                    icon_name = windowsname.split()[0]
+
+                    icon_theme = Gtk.IconTheme.get_default()
+
+                    icon_info = icon_theme.lookup_icon(icon_name, 48, 0)
+
+                    try:
+                        icon_path = icon_info.get_filename()
+                    except AttributeError:
+                        icon_path = 'images/ios-default-app-icon.png'
 
                     items.append(ExtensionResultItem(
                         icon=icon_path,
