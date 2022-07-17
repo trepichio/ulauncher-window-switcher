@@ -5,7 +5,7 @@ from ulauncher.api.shared.event import KeywordQueryEvent, ItemEnterEvent
 from ulauncher.api.shared.item.ExtensionResultItem import ExtensionResultItem
 from ulauncher.api.shared.action.RenderResultListAction import RenderResultListAction
 from ulauncher.api.shared.action.ExtensionCustomAction import ExtensionCustomAction
-from ulauncher.api.shared.action.HideWindowAction import HideWindowAction
+from ulauncher.api.shared.action.DoNothingAction import DoNothingAction
 
 import os
 
@@ -32,6 +32,17 @@ class KeywordQueryEventListener(EventListener):
             ).stdout.read().decode()
 
             pid_list = pids.splitlines()
+
+            if len(pid_list) == 0:
+                items.append(
+                    ExtensionResultItem(
+                        icon='images/not_found.png',
+                        name='None window found',
+                        description='Try searching for something else',
+                        on_enter=DoNothingAction()
+                    )
+                )
+                return RenderResultListAction(items)
 
             for pid in pid_list:
                 if pid:
