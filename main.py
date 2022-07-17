@@ -52,12 +52,10 @@ class KeywordQueryEventListener(EventListener):
         return RenderResultListAction(items)
 
 class ItemEnterEventListener(EventListener):
-
     def on_event(self, event, extension):
-        data = event.get_data()
-        return RenderResultListAction([ExtensionResultItem(icon='images/icon.png',
-                                                           name=data['new_name'],
-                                                           on_enter=HideWindowAction())])
+        pid = event.get_data() or ""
+
+        os.system('xdotool windowactivate ' + pid)
 
 
 if __name__ == '__main__':
