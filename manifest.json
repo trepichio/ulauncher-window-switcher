@@ -1,32 +1,19 @@
 {
   "required_api_version": "^2.0.0",
-  "name": "Demo",
-  "description": "Demo extension",
-  "developer_name": "Aleksandr Gornostal",
+  "name": "Window Switcher extension",
+  "description": "Another Z-like Window Switcher extension",
+  "developer_name": "João Trepichio",
   "icon": "images/icon.png",
   "options": {
-    "query_debounce": 0.05
+    "query_debounce": 0.01
   },
   "preferences": [
     {
-      "id": "demo_kw",
+      "id": "z_like_window_switcher",
       "type": "keyword",
-      "name": "Demo",
-      "default_value": "dm"
-    },
-    {
-      "id": "item_name",
-      "type": "input",
-      "name": "Item name",
-      "description": "Name for each item",
-      "default_value": "Item"
-    },
-    {
-      "id": "memo",
-      "type": "text",
-      "name": "Memo",
-      "description": "Write something here",
-      "default_value": ""
+      "name": "Window Switcher",
+      "description": "Another Z-like Window Switcher extension",
+      "default_value": "s"
     }
   ]
 }
